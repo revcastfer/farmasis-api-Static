@@ -12,7 +12,7 @@ const VideosRouter=require("./videosrouter.js")
 const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.use("",VideosRouter);
+router.use("/videos",VideosRouter);
 
 
 module.exports = router;

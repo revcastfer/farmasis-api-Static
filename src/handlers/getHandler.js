@@ -1,15 +1,22 @@
 const path= require("path")
 
 
-const getVideo=(req,res)=>{
 
-	const {name}=req.params;
-	const direcction=(path.join(__dirname,`../videos/${name}`));
-		console.log(direcction);
-
+const getVideo=(req,res)=>{	
 	try {
-			res.sendFile(direcction )
-			}catch(err){throw new Error( err.message)}
-}
+		const {name}=req.params;
+		const direcction=path.join(__dirname,`../videos/${name}`);
+		res.sendFile(direcction)
+		}catch(err){res.status(500).json(err)}
+	}
 
-module.exports=getVideo
+
+const getImagen=(req,res)=>{	
+	try {
+		const {name}=req.params;
+		const direcction=path.join(__dirname,`../imagenes/${name}`);
+		res.sendFile(direcction)
+		}catch(err){res.status(500).json(err)}
+	}
+
+module.exports={getVideo,getImagen}

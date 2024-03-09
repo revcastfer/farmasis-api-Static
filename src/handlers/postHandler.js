@@ -8,12 +8,13 @@ const postVideo=async(req,res)=>{
 		const {nombre,descripcion,categoria}=req.body;		
 		const bearerHeader = req.headers.authorization;
 
+
 		let nombreVideo=req.file.originalname;
+		console.log(typeof categoria);
 
-		const rutaVideo=path.join( __dirname,`../videos/${nombreVideo}`);		
-
+		const rutaVideo=`/videos/${nombreVideo}`;
 		let rpta= await axios.post(`${DB_API1}/farmasistutorials`,
-									{nombre:nombre,descripcion:descripcion,categoria:categoria,urlVideo:rutaVideo},
+								    {nombre:nombre,descripcion:descripcion,categoria:categoria,urlVideo:rutaVideo},
 									{headers: { Authorization:`${bearerHeader}` } }) ;
 
 		res.status(200).send(rpta.data);
@@ -30,8 +31,9 @@ const postImagen=async(req,res)=>{
 
 		let nombreImagen=req.file.originalname;
 
-		const rutaVideo=path.join( __dirname,`../imagenes/${nombreImagen}`);
-		res.status(200).send(rutaVideo);
+		const rutaImage=`/imagenes/${nombreImagen}`;
+
+		res.status(200).send(rutaImagen);
 
 	}catch(err){res.status(500).json(err.message)}
 	
